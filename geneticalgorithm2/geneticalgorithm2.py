@@ -961,9 +961,11 @@ class geneticalgorithm2:
         
         assert (obj is not None), "After "+str(self.funtimeout)+" seconds delay "+\
                 "func_timeout: the given function does not provide any output"
-                
-        assert ((type(obj)==int or type(obj)==float)), "Function should return a number"
-        
+        try:
+            assert False, ((type(obj)==int or type(obj)==float)), "Function should return a number"
+        except AssertionError as e:
+            print(repr(e)) 
+    
         return obj, time.time() - eval_time
 
 ###############################################################################
